@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLauncher — Контакты</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #1a1a1a url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #eee;
+        }
+
+        .contact-method {
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: white;
+        }
+
+        /* Стиль для Telegram */
+        .tg-btn {
+            background: #0088cc;
+            border: 1px solid #00aaff;
+        }
+        .tg-btn:hover {
+            background: #00aaff;
+            transform: scale(1.03);
+        }
+
+        /* Стиль для Gmail */
+        .mail-btn {
+            background: #d44638;
+            border: 1px solid #ff5a4a;
+        }
+        .mail-btn:hover {
+            background: #ff5a4a;
+            transform: scale(1.03);
+        }
+
+        .icon {
+            margin-right: 15px;
+            font-size: 24px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Вы можете связаться со мной в:</h1>
+
+        <a href="https://t.me/iLauncher_creator" target="_blank" class="contact-method tg-btn">
+            <span class="icon">✈</span> Telegram (@iLauncher_creator)
+        </a>
+
+        <a href="mailto:aikynsagatkenov8@gmail.com" class="contact-method mail-btn">
+            <span class="icon">✉</span> Gmail (aikynsagatkenov8)
+        </a>
+
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+
+</body>
+</html>
