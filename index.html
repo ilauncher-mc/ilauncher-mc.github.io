@@ -2,68 +2,176 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Сайт обновляется</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+    <title>iLauncher — Скачать Minecraft Bedrock Edition</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
 
         body {
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #e0e0e0;
+            background: #1a1a1a url('bg.jpg') no-repeat center center fixed; /* Убедись, что bg.jpg есть */
+            background-size: cover;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            color: #fff;
+            align-items: center;
             text-align: center;
+            overflow-x: hidden;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.12);
-            padding: 40px 50px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            max-width: 420px;
-            width: 90%;
+            background: rgba(0, 0, 0, 0.85); /* Полупрозрачный фон */
+            backdrop-filter: blur(12px); /* Эффект размытия */
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin: 20px;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            width: 350px; /* Размер логотипа */
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px rgba(0,255,0,0.4)); /* Легкая тень для лого */
         }
 
         h1 {
-            font-size: 26px;
+            font-size: 2.8em;
+            color: #00ff00; /* Ярко-зеленый заголовок */
             margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(0,255,0,0.5);
         }
 
         p {
-            font-size: 16px;
-            opacity: 0.9;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
-        .loader {
-            margin: 30px auto 0;
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .btn-download, .btn-guide {
+            display: inline-block;
+            background-color: #3e8527; /* Зеленая кнопка */
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 0 10px 20px 10px;
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .btn-download:hover, .btn-guide:hover {
+            background-color: #4da331; /* Темнее при наведении */
+            transform: translateY(-3px); /* Эффект "подъема" */
+        }
+
+        .btn-guide {
+            background-color: #1e4d8c; /* Синяя кнопка */
+        }
+        .btn-guide:hover {
+            background-color: #2b6cb0;
+        }
+
+        .features {
+            margin-top: 30px;
+            list-style: none;
+            padding: 0;
+            font-size: 1.05em;
+            text-align: left;
+            display: inline-block; /* Чтобы список центрировался как блок */
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .features li {
+            background: rgba(255, 255, 255, 0.08);
+            margin-bottom: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00ff00;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        .features li::before {
+            content: '✓';
+            color: #00ff00;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3em;
+        }
+
+        /* Стиль для предупреждения о GDK */
+        .warning-gdk {
+            color: #ffcc00; 
+            background: rgba(255, 204, 0, 0.1); 
+            padding: 15px; 
+            border-radius: 8px; 
+            border: 1px solid #ffcc00; 
+            margin-top: 20px; 
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #a0a0a0;
+            padding: 20px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Сайт обновляется</h1>
-        <p>Пожалуйста, подождите… Мы скоро вернёмся 🚀</p>
-        <div class="loader"></div>
+        <img src="logo.png" alt="iLauncher Logo" class="logo">
+        <h1>iLauncher — Твой Minecraft Bedrock, без границ!</h1>
+        <p>
+            Скачивайте, устанавливайте и играйте в любые версии Minecraft Bedrock Edition.
+            Полная активация игры, поддержка Xbox Live и всех сервисов. Удобно, быстро и абсолютно бесплатно!
+        </p>
+
+        <a href="https://mega.nz/file/PpZ0nbgQ#OoBOc0Q27QOOVN_bQ40LY4QuSYxbLuwsoGGm2xAnkMg" class="btn-download" download>
+            Скачать iLauncher (v1.0)
+        </a>
+
+        <div class="warning-gdk">
+            ⚠️ Версии 1.21.120+ (GDK) временно не поддерживаются из-за ограничений Microsoft. Мы работаем над стабильным решением!
+        </div>
+
+        <ul class="features">
+            <li>Полная активация Minecraft Bedrock Edition.</li>
+            <li>Поддержка Xbox Live и игровых сервисов.</li>
+            <li>Возможность скачать и установить любую версию игры.</li>
+            <li>Простой и интуитивно понятный интерфейс.</li>
+        </ul>
     </div>
+
+    <div class="footer">
+        © 2026 iLauncher Project. Есть вопросы? <a href="https://ilauncher-mc.github.io/contact">Свяжитесь с нами</a>
+    </div>
+
 </body>
 </html>
