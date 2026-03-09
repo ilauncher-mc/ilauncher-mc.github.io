@@ -3,175 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iLauncher — Скачать Minecraft Bedrock Edition</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <style>
-        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+    <title>iLauncher — Твой универсальный инструмент для Minecraft Bedrock</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050609;
+            --card-bg: rgba(22, 26, 36, 0.85);
+            --accent-green: #10b981;
+            --accent-green-glow: rgba(16, 185, 129, 0.4);
+            --text-main: #cbd5e1;
+            --text-white: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            color: #e0e0e0;
-            background: #1a1a1a url('bg.jpg') no-repeat center center fixed; /* Убедись, что bg.jpg есть */
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('bg.jpg');
             background-size: cover;
-            min-height: 100vh;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-img { height: 50px; width: auto; transition: 0.3s; }
+
+        .hero {
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow-x: hidden;
+            padding: 40px 20px;
         }
 
-        .container {
-            background: rgba(0, 0, 0, 0.85); /* Полупрозрачный фон */
-            backdrop-filter: blur(12px); /* Эффект размытия */
-            border-radius: 15px;
-            padding: 40px 30px;
-            margin: 20px;
-            max-width: 800px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            animation: fadeIn 1s ease-out;
+        .hero-logo { 
+            height: 180px; 
+            margin-bottom: 40px; 
+            filter: drop-shadow(0 0 30px var(--accent-green-glow)); 
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hero p {
+            max-width: 750px;
+            font-size: 1.35rem;
+            margin-bottom: 50px;
+            color: #e2e8f0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            line-height: 1.5;
         }
 
-        .logo {
-            width: 350px; /* Размер логотипа */
-            margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px rgba(0,255,0,0.4)); /* Легкая тень для лого */
-        }
-
-        h1 {
-            font-size: 2.8em;
-            color: #00ff00; /* Ярко-зеленый заголовок */
-            margin-bottom: 15px;
-            text-shadow: 0 0 8px rgba(0,255,0,0.5);
-        }
-
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .btn-download, .btn-guide {
-            display: inline-block;
-            background-color: #3e8527; /* Зеленая кнопка */
-            color: white;
-            padding: 15px 40px;
-            border-radius: 8px;
+        .btn-main {
+            background: var(--accent-green);
+            color: #022c22;
+            padding: 22px 65px;
+            border-radius: 20px;
+            font-weight: 800;
             text-decoration: none;
-            font-size: 1.3em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            margin: 0 10px 20px 10px;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 40px var(--accent-green-glow);
+            transition: 0.3s ease;
+            text-transform: uppercase;
+            display: inline-flex; align-items: center; gap: 15px;
         }
 
-        .btn-download:hover, .btn-guide:hover {
-            background-color: #4da331; /* Темнее при наведении */
-            transform: translateY(-3px); /* Эффект "подъема" */
-        }
-
-        .btn-guide {
-            background-color: #1e4d8c; /* Синяя кнопка */
-        }
-        .btn-guide:hover {
-            background-color: #2b6cb0;
+        .btn-main:hover {
+            transform: translateY(-5px);
+            background: #059669;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.6);
         }
 
         .features {
-            margin-top: 30px;
-            list-style: none;
-            padding: 0;
-            font-size: 1.05em;
-            text-align: left;
-            display: inline-block; /* Чтобы список центрировался как блок */
-            width: 100%;
-            max-width: 600px;
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .features li {
-            background: rgba(255, 255, 255, 0.08);
-            margin-bottom: 10px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border-left: 4px solid #00ff00;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-        }
-        .features li::before {
-            content: '✓';
-            color: #00ff00;
-            font-weight: bold;
-            margin-right: 15px;
-            font-size: 1.3em;
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 45px;
+            border-radius: 30px;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
         }
 
-        /* Стиль для предупреждения о GDK */
-        .warning-gdk {
-            color: #ffcc00; 
-            background: rgba(255, 204, 0, 0.1); 
-            padding: 15px; 
-            border-radius: 8px; 
-            border: 1px solid #ffcc00; 
-            margin-top: 20px; 
-            font-weight: bold;
-            font-size: 0.95em;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
         }
 
-        .footer {
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #a0a0a0;
-            padding: 20px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+        .icon-wrap {
+            width: 60px; height: 60px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 25px;
         }
-        .footer a {
-            color: #58a6ff;
+
+        .feature-card i { font-size: 1.8rem; color: var(--accent-green); }
+        .feature-card h3 { color: white; font-size: 1.6rem; margin-bottom: 15px; }
+
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .social-btn {
+            display: inline-block;
+            color: var(--accent-green);
             text-decoration: none;
+            font-weight: 700;
+            border: 1px solid var(--accent-green);
+            padding: 10px 25px;
+            border-radius: 12px;
+            transition: 0.3s;
         }
-        .footer a:hover {
-            text-decoration: underline;
-        }
+        .social-btn:hover { background: var(--accent-green); color: #022c22; }
+
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        [data-reveal].active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="logo.png" alt="iLauncher Logo" class="logo">
-        <h1>iLauncher — Твой Minecraft Bedrock, без границ!</h1>
-        <p>
-            Скачивайте, устанавливайте и играйте в любые версии Minecraft Bedrock Edition.
-            Полная активация игры, поддержка Xbox Live и всех сервисов. Удобно, быстро и абсолютно бесплатно!
-        </p>
+    <header>
+        <div class="logo-box">
+            <img src="logo.png" alt="iLauncher" class="logo-img">
+        </div>
+        <nav>
+            <a href="https://ilauncher-mc.github.io/contact" class="social-btn">Контакты</a>
+        </nav>
+    </header>
 
-        <a href="https://mega.nz/file/PpZ0nbgQ#OoBOc0Q27QOOVN_bQ40LY4QuSYxbLuwsoGGm2xAnkMg" class="btn-download" download>
-            Скачать iLauncher (v1.0)
-        </a>
+    <section class="hero">
+        <img src="logo.png" alt="iLauncher" class="hero-logo" data-reveal>
+        <p data-reveal>Твой универсальный инструмент для Minecraft Bedrock. Полная активация, поддержка Xbox Live, выбор версий и умная оптимизация в одном приложении.</p>
+        
+        <div data-reveal>
+            <a href="https://github.com/assagatkenov/iLauncher/releases/download/Setup/iLauncherInstaller.exe" class="btn-main">
+                <i class="fas fa-download"></i> Скачать iLauncher
+            </a>
+        </div>
+    </section>
 
-        <div class="warning-gdk">
-            ⚠️ Версии 1.21.120+ (GDK) временно не поддерживаются из-за ограничений Microsoft. Мы работаем над стабильным решением!
+    <section class="features">
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-key"></i></div>
+            <h3>Полная активация</h3>
+            <p>Забудьте о пробных периодах. iLauncher обеспечивает полную активацию Minecraft Bedrock Edition.</p>
         </div>
 
-        <ul class="features">
-            <li>Полная активация Minecraft Bedrock Edition.</li>
-            <li>Поддержка Xbox Live и игровых сервисов.</li>
-            <li>Возможность скачать и установить любую версию игры.</li>
-            <li>Простой и интуитивно понятный интерфейс.</li>
-        </ul>
-    </div>
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-users"></i></div>
+            <h3>Xbox Live сервисы</h3>
+            <p>Играйте на серверах, добавляйте друзей и получайте достижения без проблем с авторизацией.</p>
+        </div>
 
-    <div class="footer">
-        © 2026 iLauncher Project. Есть вопросы? <a href="https://ilauncher-mc.github.io/contact">Свяжитесь с нами</a>
-    </div>
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-bolt"></i></div>
+            <h3>EnderBoost</h3>
+            <p>Уникальная система оптимизации. Увеличь свой FPS и освободи оперативную память перед игрой.</p>
+        </div>
 
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-map-marked-alt"></i></div>
+            <h3>Chunker</h3>
+            <p>Переноси свои карты между Java и Bedrock изданиями без потери данных и лишних сложностей.</p>
+        </div>
+
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-network-wired"></i></div>
+            <h3>Серверный Центр</h3>
+            <p>Мгновенный доступ к 20 лучшим мировым и СНГ серверам. Копируй IP адрес в один клик.</p>
+        </div>
+
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-palette"></i></div>
+            <h3>Modern UI</h3>
+            <p>Красивый интерфейс и поддержка 5 глубоких цветовых тем для полного погружения.</p>
+        </div>
+
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-layer-group"></i></div>
+            <h3>Управление версиями</h3>
+            <p>Скачивай и устанавливай любую версию Minecraft — от GDK релизов до официальных UWP.</p>
+        </div>
+
+        <div class="feature-card" data-reveal>
+            <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
+            <h3>Безопасность</h3>
+            <p>Лаунчер не требует ввода данных аккаунта Microsoft для портативных версий. Данные под защитой.</p>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo.png" alt="iLauncher" style="height: 40px; margin-bottom: 20px; opacity: 0.7;">
+        <p style="margin-top: 10px; opacity: 0.5;">© 2026 iLauncher Project. Автор: Assagatkenov. Все права защищены.</p>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll("[data-reveal]");
+        const scrollReveal = function () {
+            for (let i = 0; i < revealElements.length; i++) {
+                if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.1) {
+                    revealElements[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", scrollReveal);
+        window.addEventListener("load", scrollReveal);
+    </script>
 </body>
 </html>
