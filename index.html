@@ -3,239 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iLauncher — Твой универсальный инструмент для Minecraft Bedrock</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>iLauncher | Скоро вернемся</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #050609;
-            --card-bg: rgba(22, 26, 36, 0.85);
-            --accent-green: #10b981;
-            --accent-green-glow: rgba(16, 185, 129, 0.4);
-            --text-main: #cbd5e1;
-            --text-white: #f8fafc;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        header {
-            padding: 15px 8%;
+            background-color: #050505;
+            color: #ffffff;
+            height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(15px);
-            background: rgba(0, 0, 0, 0.5);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo-img { height: 50px; width: auto; transition: 0.3s; }
-
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Анимированный градиент на фоне */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 8s infinite alternate;
+            z-index: 1;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0.6;
+        }
+
+        /* Контейнер с эффектом матового стекла */
+        .glass-container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 60px 40px;
             text-align: center;
-            padding: 40px 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 1s ease-out;
         }
 
-        .hero-logo { 
-            height: 180px; 
-            margin-bottom: 40px; 
-            filter: drop-shadow(0 0 30px var(--accent-green-glow)); 
-        }
-
-        .hero p {
-            max-width: 750px;
-            font-size: 1.35rem;
-            margin-bottom: 50px;
-            color: #e2e8f0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-            line-height: 1.5;
-        }
-
-        .btn-main {
-            background: var(--accent-green);
-            color: #022c22;
-            padding: 22px 65px;
-            border-radius: 20px;
-            font-weight: 800;
-            text-decoration: none;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 40px var(--accent-green-glow);
-            transition: 0.3s ease;
-            text-transform: uppercase;
-            display: inline-flex; align-items: center; gap: 15px;
-        }
-
-        .btn-main:hover {
-            transform: translateY(-5px);
-            background: #059669;
-            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.6);
-        }
-
-        .features {
-            padding: 80px 8%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 45px;
-            border-radius: 30px;
-            transition: 0.4s;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-green);
-        }
-
-        .icon-wrap {
-            width: 60px; height: 60px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .feature-card i { font-size: 1.8rem; color: var(--accent-green); }
-        .feature-card h3 { color: white; font-size: 1.6rem; margin-bottom: 15px; }
-
-        footer {
-            padding: 60px 8%;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .social-btn {
-            display: inline-block;
-            color: var(--accent-green);
-            text-decoration: none;
+        .logo {
+            font-size: 2.5rem;
             font-weight: 700;
-            border: 1px solid var(--accent-green);
-            padding: 10px 25px;
-            border-radius: 12px;
-            transition: 0.3s;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .social-btn:hover { background: var(--accent-green); color: #022c22; }
 
-        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        [data-reveal].active { opacity: 1; transform: translateY(0); }
+        .logo span.i {
+            color: #007aff; /* Apple blue */
+            text-shadow: 0 0 20px rgba(0, 122, 255, 0.6);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #e5e5e5;
+        }
+
+        p {
+            color: #a3a3a3;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Анимация загрузки */
+        .loader {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #007aff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        /* Ключевые кадры анимаций */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        }
+
+        /* Декоративная линия */
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #007aff, transparent);
+            margin: 25px auto;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-box">
-            <img src="logo.png" alt="iLauncher" class="logo-img">
-        </div>
-        <nav>
-            <a href="https://ilauncher-mc.github.io/contact" class="social-btn">Контакты</a>
-        </nav>
-    </header>
+    <div class="bg-glow"></div>
+    <!-- Канвас для анимации частиц -->
+    <canvas id="particles"></canvas>
 
-    <section class="hero">
-        <img src="logo.png" alt="iLauncher" class="hero-logo" data-reveal>
-        <p data-reveal>Твой универсальный инструмент для Minecraft Bedrock. Полная активация, поддержка Xbox Live, выбор версий и умная оптимизация в одном приложении.</p>
+    <div class="glass-container">
+        <div class="logo">
+            <span class="i">i</span>Launcher
+        </div>
+        <div class="divider"></div>
+        <h1>Перезагрузка систем...</h1>
+        <p>Мы временно закрыли сайт для проведения масштабного обновления. iLauncher станет ещё быстрее, стабильнее и красивее. Мы скоро вернемся!</p>
         
-        <div data-reveal>
-            <a href="https://github.com/assagatkenov/iLauncher/releases/download/Setup/iLauncherInstaller.exe" class="btn-main">
-                <i class="fas fa-download"></i> Скачать iLauncher
-            </a>
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-    </section>
-
-    <section class="features">
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-key"></i></div>
-            <h3>Полная активация</h3>
-            <p>Забудьте о пробных периодах. iLauncher обеспечивает полную активацию Minecraft Bedrock Edition.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-users"></i></div>
-            <h3>Xbox Live сервисы</h3>
-            <p>Играйте на серверах, добавляйте друзей и получайте достижения без проблем с авторизацией.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-bolt"></i></div>
-            <h3>EnderBoost</h3>
-            <p>Уникальная система оптимизации. Увеличь свой FPS и освободи оперативную память перед игрой.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-map-marked-alt"></i></div>
-            <h3>Chunker</h3>
-            <p>Переноси свои карты между Java и Bedrock изданиями без потери данных и лишних сложностей.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-network-wired"></i></div>
-            <h3>Серверный Центр</h3>
-            <p>Мгновенный доступ к 20 лучшим мировым и СНГ серверам. Копируй IP адрес в один клик.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-palette"></i></div>
-            <h3>Modern UI</h3>
-            <p>Красивый интерфейс и поддержка 5 глубоких цветовых тем для полного погружения.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-layer-group"></i></div>
-            <h3>Управление версиями</h3>
-            <p>Скачивай и устанавливай любую версию Minecraft — от GDK релизов до официальных UWP.</p>
-        </div>
-
-        <div class="feature-card" data-reveal>
-            <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
-            <h3>Безопасность</h3>
-            <p>Лаунчер не требует ввода данных аккаунта Microsoft для портативных версий. Данные под защитой.</p>
-        </div>
-    </section>
-
-    <footer>
-        <img src="logo.png" alt="iLauncher" style="height: 40px; margin-bottom: 20px; opacity: 0.7;">
-        <p style="margin-top: 10px; opacity: 0.5;">© 2026 iLauncher Project. Автор: Assagatkenov. Все права защищены.</p>
-    </footer>
+    </div>
 
     <script>
-        const revealElements = document.querySelectorAll("[data-reveal]");
-        const scrollReveal = function () {
-            for (let i = 0; i < revealElements.length; i++) {
-                if (revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.1) {
-                    revealElements[i].classList.add("active");
-                }
+        // Анимация плавающих частиц на фоне (звездная пыль)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Возврат частиц на экран, если они улетели за край
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        window.addEventListener("scroll", scrollReveal);
-        window.addEventListener("load", scrollReveal);
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Обновление размера канваса при изменении размера окна
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
     </script>
+
 </body>
 </html>
